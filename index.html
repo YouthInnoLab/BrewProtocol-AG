@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTCPCP/1.0 Brew Client</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <h1><span class="highlight">HTCPCP</span> Client</h1>
+            <p class="subtitle">RFC 2324 Compliant Hyper Text Coffee Pot Control Protocol</p>
+        </header>
+
+        <main class="dashboard">
+            <!-- Left Panel: Controls -->
+            <div class="panel controls-panel glass">
+                <h2>Request Configuration</h2>
+                
+                <div class="form-group">
+                    <label for="method">Method</label>
+                    <select id="method">
+                        <option value="BREW">BREW</option>
+                        <option value="POST">POST</option>
+                        <option value="GET">GET</option>
+                        <option value="PROPFIND">PROPFIND</option>
+                        <option value="WHEN">WHEN</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="pot-select">Target Pot</label>
+                    <select id="pot-select">
+                        <option value="default">Default Coffee Pot</option>
+                        <option value="teapot">The Teapot (Warning)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="additions">Accept-Additions</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" value="Cream" class="addition"> Cream</label>
+                        <label><input type="checkbox" value="Half-and-half" class="addition"> Half-and-half</label>
+                        <label><input type="checkbox" value="Vanilla" class="addition"> Vanilla</label>
+                        <label><input type="checkbox" value="Raspberry" class="addition"> Raspberry</label>
+                        <label><input type="checkbox" value="Whisky" class="addition"> Whisky</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="decaf-toggle">
+                        <span class="slider"></span>
+                        <span class="toggle-label">Request Decaf</span>
+                    </label>
+                </div>
+
+                <button id="send-btn" class="primary-btn">Send Request</button>
+            </div>
+
+            <!-- Center Panel: Visualization -->
+            <div class="panel vis-panel glass">
+                <div class="coffee-pot-container" id="pot-container">
+                    <div class="steam-layer" id="steam-layer"></div>
+                    <div class="pot" id="active-pot">
+                        <div class="liquid" id="liquid"></div>
+                        <div class="pot-body"></div>
+                        <div class="pot-handle"></div>
+                        <div class="pot-spout"></div>
+                    </div>
+                    <div class="status-badge" id="brew-status">IDLE</div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Wire Format / Terminal -->
+            <div class="panel term-panel custom-glass">
+                <h2>Network Inspector</h2>
+                <div class="terminal" id="terminal">
+                    <!-- Wire format output will go here -->
+                    <div class="term-line output">Waiting for HTCPCP/1.0 request...</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Row: Extensions -->
+        <section class="extensions">
+            <!-- Pot Inventory -->
+            <div class="panel glass">
+                <div class="panel-header">
+                    <h2>Pot Inventory</h2>
+                    <button id="new-pot-btn" class="sm-btn">+ Register Pot</button>
+                </div>
+                <div class="inventory-grid" id="inventory-grid">
+                    <!-- Generated via JS -->
+                </div>
+            </div>
+
+            <!-- 418 Achievement Board -->
+            <div class="panel glass">
+                <h2>418 Achievement Board</h2>
+                <p class="subtitle">Collect unique teapot errors</p>
+                <div class="achievement-grid" id="achievement-grid">
+                    <!-- Generated via JS -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modals -->
+    <div id="new-pot-modal" class="modal hidden">
+        <div class="modal-content glass">
+            <h3>Register New Pot</h3>
+            <input type="text" id="new-pot-name" placeholder="Pot Name (e.g. Breakroom Brewer)">
+            <select id="new-pot-type">
+                <option value="coffee">Coffee Pot</option>
+                <option value="tea">Teapot</option>
+            </select>
+            <div class="modal-actions">
+                <button id="cancel-pot" class="secondary-btn">Cancel</button>
+                <button id="save-pot" class="primary-btn">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
